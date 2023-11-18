@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="myform">
+        <input type="number" name="count" value="10">
+        <input type="submit">
+    </form>
+
+    <div id="output"></div>
+
+    <script>
+        function generateImages(count) {
+            let output = document.getElementById("output");
+            output.innerHTML = "";
+            for (let i = 0; i < count; i++) {
+                let img = document.createElement("img");
+                img.src = "/myapp/image/gen?" + i;
+                output.appendChild(img);
+            }
+        }
+
+        function myform_onsubmit(evt) {
+            evt.preventDefault();
+            let count = evt.target.count.value;
+            generateImages(count);
+        }
+
+        document.myform.onsubmit = myform_onsubmit;
+    </script>
+</body>
+</html>

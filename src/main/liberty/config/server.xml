@@ -1,0 +1,52 @@
+<server description="defaultServer">
+
+    <featureManager>
+        <feature>jakartaee-10.0</feature>
+        <feature>mpOpenAPI-3.1</feature>
+        <!-- <feature>restConnector-2.0</feature>
+        <feature>jdbc-4.3</feature> -->
+    </featureManager>
+
+    <appProperties>
+        <property name="mp.openapi.servers" value="http://example.com/"/>
+    </appProperties>
+
+    <basicRegistry id="defaultBasicRegistry" realm="BasicRealm">
+        <user name="daisuke" password="daisuke" />
+    </basicRegistry>
+
+    <administrator-role>
+        <user>daisuke</user>
+    </administrator-role>
+
+    <keyStore id="defaultKeyStore" password="password" />
+
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="9080" httpsPort="9443" />
+
+    <webApplication location="jakartaee-hello-world.war" contextRoot="/"/>
+
+    <!-- <library id="derbyLib">
+        <fileset dir="jdbc" includes="derby-*.jar"/>
+    </library> -->
+
+    <library id="h2Lib">
+        <fileset dir="jdbc" includes="h2-*.jar"/>
+    </library>
+
+    <!-- <dataSource id="DefaultDataSource">
+        <jdbcDriver libraryRef="derbyLib"/>
+        <properties.derby.embedded databaseName="memory:myDB" createDatabase="create"/>
+    </dataSource> -->
+
+    <dataSource jndiName="jdbc/derbymemorydatasource">
+        <jdbcDriver libraryRef="derbyLib"/>
+        <properties url="jdbc:derby:memory:myDB;create=true"/>
+    </dataSource>
+
+    <dataSource jndiName="jdbc/h2memorydatasource">
+        <jdbcDriver libraryRef="h2Lib"/>
+        <!-- <properties url="jdbc:h2:./testdb" user="sa" password="" /> -->
+        <properties url="jdbc:h2:tcp:localhost:9092/./testdb" user="sa" password="" />
+        <!-- <properties url="jdbc:h2:mem:"/> -->
+    </dataSource>
+</server>
