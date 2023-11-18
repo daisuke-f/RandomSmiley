@@ -1,5 +1,4 @@
 target/
 .vscode/**
-.mvn/**
 derby.log
 testdb.mv.db
