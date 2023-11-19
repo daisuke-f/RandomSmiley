@@ -16,10 +16,9 @@
     <script>
         function generateImages(count) {
             let output = document.getElementById("output");
-            output.innerHTML = "";
             for (let i = 0; i < count; i++) {
                 let img = document.createElement("img");
-                img.src = "/myapp/image/gen?" + i;
+                img.src = "/myapp/image/gen?" + Math.random();
                 output.appendChild(img);
             }
         }
