@@ -46,8 +46,8 @@ public class ImageUtil {
 
         Random rnd = new Random();
 
-        Color background = getRandomColorBetween(rnd, Color.WHITE, new Color(0xe6, 0xe6, 0xe6));
-        Color foreground = getRandomColorBetween(rnd, new Color(0x66, 0x66, 0x66), new Color(0xcc, 0xcc, 0xcc));
+        Color background = getRandomColorInHSB(rnd, 0f, 0.1f, 0.9f, 1f);
+        Color foreground = getRandomColorInHSB(rnd, 0.4f, 1f, 0.7f, 1f);
 
         // fill background
         g.setColor(background);
@@ -98,6 +98,14 @@ public class ImageUtil {
         double randomY = rnd.nextDouble(height) + y;
 
         return new Point2D.Double(randomX, randomY);
+    }
+
+    public static Color getRandomColorInHSB(Random rnd, float minSaturation, float maxSaturation, float minBrightness, float maxBrightness) {
+        float hue = rnd.nextFloat();
+        float sturation = rnd.nextFloat() * (maxSaturation - minSaturation) + minSaturation;
+        float brightness = rnd.nextFloat() * (maxBrightness - minBrightness) + minBrightness;
+        int rgb = Color.HSBtoRGB(hue, sturation, brightness);
+        return new Color(rgb);
     }
 
     public static Color getRandomColorBetween(Random rnd, Color c1, Color c2) {
