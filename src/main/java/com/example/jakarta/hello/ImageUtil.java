@@ -3,7 +3,7 @@ package com.example.jakarta.hello;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.Random;
-import java.util.random.RandomGenerator;
+// import java.util.random.RandomGenerator;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -94,8 +94,8 @@ public class ImageUtil {
     }
 
     public static Point2D getRandomPointInRect(Random rnd, double x, double y, double width, double height) {
-        double randomX = rnd.nextDouble(width) + x;
-        double randomY = rnd.nextDouble(height) + y;
+        double randomX = rnd.nextDouble() * width + x;
+        double randomY = rnd.nextDouble() * height + y;
 
         return new Point2D.Double(randomX, randomY);
     }
